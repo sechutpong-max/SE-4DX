@@ -2,94 +2,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SE Operations Command Center - Dashboard Viewer</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
-                        darkbg: '#0a0f1d',
-                        surface: '#111827',
-                        surfaceHover: '#1f2937',
-                        cyanAccent: '#06b6d4',
-                        cyanGlow: 'rgba(6, 182, 212, 0.25)'
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif']
-                    }
+                    colors: { darkbg: '#0a0f1d', surface: '#111827', surfaceHover: '#1f2937', cyanAccent: '#06b6d4', cyanGlow: 'rgba(6, 182, 212, 0.25)' },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
                 }
             }
         }
     </script>
     <style>
-        body {
-            background-color: #0a0f1d;
-            color: #f3f4f6;
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0a0f1d;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #1f2937;
-            border-radius: 3px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #06b6d4;
-        }
-
-        /* Subtle glowing card border */
-        .glow-border {
-            border: 1px solid rgba(6, 182, 212, 0.3);
-            box-shadow: 0 0 20px rgba(6, 182, 212, 0.12);
-        }
-
-        /* Live pulse dot animation */
-        @keyframes pulse-dot {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.4; transform: scale(1.15); }
-        }
-        .animate-pulse-dot {
-            animation: pulse-dot 2s infinite ease-in-out;
-        }
-
-        /* Responsive 16:9 Aspect Ratio Container */
-        .aspect-16-9 {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            height: 0;
-            overflow: hidden;
-        }
-        .aspect-16-9 iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
+        body { background-color: #0a0f1d; color: #f3f4f6; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #0a0f1d; }
+        ::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #06b6d4; }
+        .glow-border { border: 1px solid rgba(6, 182, 212, 0.3); box-shadow: 0 0 20px rgba(6, 182, 212, 0.12); }
+        @keyframes pulse-dot { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.15); } }
+        .animate-pulse-dot { animation: pulse-dot 2s infinite ease-in-out; }
+        .aspect-16-9 { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; }
+        .aspect-16-9 iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
     </style>
-<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:Inter, sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.pointer-events-none{pointer-events:none}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0px}.top-0{top:0px}.z-10{z-index:10}.z-30{z-index:30}.mx-auto{margin-left:auto;margin-right:auto}.mb-3{margin-bottom:0.75rem}.mr-1{margin-right:0.25rem}.mt-0\.5{margin-top:0.125rem}.flex{display:flex}.hidden{display:none}.h-10{height:2.5rem}.h-2{height:0.5rem}.max-h-60{max-height:15rem}.min-h-screen{min-height:100vh}.w-10{width:2.5rem}.w-2{width:0.5rem}.w-full{width:100%}.w-1\/3{width:33.333333%}.max-w-7xl{max-width:80rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}@keyframes spin{to{transform:rotate(360deg)}}.animate-spin{animation:spin 1s linear infinite}.cursor-pointer{cursor:pointer}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-1\.5{gap:0.375rem}.gap-2{gap:0.5rem}.gap-2\.5{gap:0.625rem}.gap-4{gap:1rem}.gap-3{gap:0.75rem}.space-x-1 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(0.25rem * var(--tw-space-x-reverse));margin-left:calc(0.25rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-2 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(0.5rem * var(--tw-space-x-reverse));margin-left:calc(0.5rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-3 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(0.75rem * var(--tw-space-x-reverse));margin-left:calc(0.75rem * calc(1 - var(--tw-space-x-reverse)))}.space-y-6 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.space-y-2\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.625rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.625rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-y-auto{overflow-y:auto}.rounded{border-radius:0.25rem}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-md{border-radius:0.375rem}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-4{border-width:4px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-r{border-right-width:1px}.border-emerald-500\/40{border-color:rgb(16 185 129 / 0.4)}.border-gray-700{--tw-border-opacity:1;border-color:rgb(55 65 81 / var(--tw-border-opacity, 1))}.border-gray-700\/80{border-color:rgb(55 65 81 / 0.8)}.border-gray-800{--tw-border-opacity:1;border-color:rgb(31 41 55 / var(--tw-border-opacity, 1))}.border-cyan-500\/40{border-color:rgb(6 182 212 / 0.4)}.border-gray-800\/80{border-color:rgb(31 41 55 / 0.8)}.border-cyanAccent\/80{border-color:rgb(6 182 212 / 0.8)}.border-t-cyanAccent{--tw-border-opacity:1;border-top-color:rgb(6 182 212 / var(--tw-border-opacity, 1))}.bg-darkbg{--tw-bg-opacity:1;background-color:rgb(10 15 29 / var(--tw-bg-opacity, 1))}.bg-emerald-400{--tw-bg-opacity:1;background-color:rgb(52 211 153 / var(--tw-bg-opacity, 1))}.bg-emerald-500\/20{background-color:rgb(16 185 129 / 0.2)}.bg-emerald-600{--tw-bg-opacity:1;background-color:rgb(5 150 105 / var(--tw-bg-opacity, 1))}.bg-surface{--tw-bg-opacity:1;background-color:rgb(17 24 39 / var(--tw-bg-opacity, 1))}.bg-surface\/90{background-color:rgb(17 24 39 / 0.9)}.bg-surface\/50{background-color:rgb(17 24 39 / 0.5)}.bg-cyan-600\/20{background-color:rgb(8 145 178 / 0.2)}.bg-transparent{background-color:transparent}.bg-gradient-to-r{background-image:linear-gradient(to right, var(--tw-gradient-stops))}.bg-gradient-to-tr{background-image:linear-gradient(to top right, var(--tw-gradient-stops))}.from-cyan-600{--tw-gradient-from:#0891b2 var(--tw-gradient-from-position);--tw-gradient-to:rgb(8 145 178 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.to-cyan-400{--tw-gradient-to:#22d3ee var(--tw-gradient-to-position)}.to-cyan-500{--tw-gradient-to:#06b6d4 var(--tw-gradient-to-position)}.p-1{padding:0.25rem}.p-1\.5{padding:0.375rem}.p-2{padding:0.5rem}.p-4{padding:1rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-2\.5{padding-left:0.625rem;padding-right:0.625rem}.px-3\.5{padding-left:0.875rem;padding-right:0.875rem}.px-4{padding-left:1rem;padding-right:1rem}.py-0\.5{padding-top:0.125rem;padding-bottom:0.125rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-3\.5{padding-top:0.875rem;padding-bottom:0.875rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}.px-1{padding-left:0.25rem;padding-right:0.25rem}.pl-1{padding-left:0.25rem}.pr-1{padding-right:0.25rem}.pr-2{padding-right:0.5rem}.text-center{text-align:center}.font-mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}.text-\[10px\]{font-size:10px}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xs{font-size:0.75rem;line-height:1rem}.text-\[11px\]{font-size:11px}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.tracking-wider{letter-spacing:0.05em}.text-cyanAccent{--tw-text-opacity:1;color:rgb(6 182 212 / var(--tw-text-opacity, 1))}.text-darkbg{--tw-text-opacity:1;color:rgb(10 15 29 / var(--tw-text-opacity, 1))}.text-emerald-400{--tw-text-opacity:1;color:rgb(52 211 153 / var(--tw-text-opacity, 1))}.text-gray-100{--tw-text-opacity:1;color:rgb(243 244 246 / var(--tw-text-opacity, 1))}.text-gray-300{--tw-text-opacity:1;color:rgb(209 213 219 / var(--tw-text-opacity, 1))}.text-gray-400{--tw-text-opacity:1;color:rgb(156 163 175 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-gray-200{--tw-text-opacity:1;color:rgb(229 231 235 / var(--tw-text-opacity, 1))}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128 / var(--tw-text-opacity, 1))}.text-red-400\/70{color:rgb(248 113 113 / 0.7)}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.opacity-0{opacity:0}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-cyan-500\/20{--tw-shadow-color:rgb(6 182 212 / 0.2);--tw-shadow:var(--tw-shadow-colored)}.shadow-emerald-600\/20{--tw-shadow-color:rgb(5 150 105 / 0.2);--tw-shadow:var(--tw-shadow-colored)}.shadow-cyan-500\/10{--tw-shadow-color:rgb(6 182 212 / 0.1);--tw-shadow:var(--tw-shadow-colored)}.backdrop-blur-md{--tw-backdrop-blur:blur(12px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-opacity{transition-property:opacity;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-500{transition-duration:500ms}.focus-within\:border-cyanAccent:focus-within{--tw-border-opacity:1;border-color:rgb(6 182 212 / var(--tw-border-opacity, 1))}.hover\:bg-emerald-500:hover{--tw-bg-opacity:1;background-color:rgb(16 185 129 / var(--tw-bg-opacity, 1))}.hover\:bg-surfaceHover:hover{--tw-bg-opacity:1;background-color:rgb(31 41 55 / var(--tw-bg-opacity, 1))}.hover\:bg-cyan-600\/40:hover{background-color:rgb(8 145 178 / 0.4)}.hover\:from-cyan-500:hover{--tw-gradient-from:#06b6d4 var(--tw-gradient-from-position);--tw-gradient-to:rgb(6 182 212 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.hover\:to-cyan-400:hover{--tw-gradient-to:#22d3ee var(--tw-gradient-to-position)}.hover\:text-cyanAccent:hover{--tw-text-opacity:1;color:rgb(6 182 212 / var(--tw-text-opacity, 1))}.hover\:text-red-400:hover{--tw-text-opacity:1;color:rgb(248 113 113 / var(--tw-text-opacity, 1))}.focus\:border-cyanAccent:focus{--tw-border-opacity:1;border-color:rgb(6 182 212 / var(--tw-border-opacity, 1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}@media (min-width: 640px){.sm\:inline{display:inline}}@media (min-width: 768px){.md\:inline{display:inline}.md\:w-1\/4{width:25%}.md\:p-3{padding:0.75rem}.md\:p-6{padding:1.5rem}.md\:p-5{padding:1.25rem}.md\:px-6{padding-left:1.5rem;padding-right:1.5rem}.md\:text-base{font-size:1rem;line-height:1.5rem}.md\:text-sm{font-size:0.875rem;line-height:1.25rem}}@media (min-width: 1024px){.lg\:inline{display:inline}}</style></head>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:Inter, sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.pointer-events-none{pointer-events:none}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0px}.top-0{top:0px}.z-10{z-index:10}.z-30{z-index:30}.mb-3{margin-bottom:0.75rem}.mr-1{margin-right:0.25rem}.mt-0\.5{margin-top:0.125rem}.flex{display:flex}.hidden{display:none}.h-10{height:2.5rem}.h-2{height:0.5rem}.min-h-screen{min-height:100vh}.w-10{width:2.5rem}.w-2{width:0.5rem}.w-80{width:20rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}@keyframes spin{to{transform:rotate(360deg)}}.animate-spin{animation:spin 1s linear infinite}.cursor-pointer{cursor:pointer}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-1\.5{gap:0.375rem}.gap-2{gap:0.5rem}.gap-2\.5{gap:0.625rem}.gap-4{gap:1rem}.space-x-1 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(0.25rem * var(--tw-space-x-reverse));margin-left:calc(0.25rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-2 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(0.5rem * var(--tw-space-x-reverse));margin-left:calc(0.5rem * calc(1 - var(--tw-space-x-reverse)))}.space-x-3 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(0.75rem * var(--tw-space-x-reverse));margin-left:calc(0.75rem * calc(1 - var(--tw-space-x-reverse)))}.space-y-2\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.625rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.625rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-y-auto{overflow-y:auto}.rounded{border-radius:0.25rem}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-md{border-radius:0.375rem}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-4{border-width:4px}.border-b{border-bottom-width:1px}.border-r{border-right-width:1px}.border-t{border-top-width:1px}.border-cyan-500\/40{border-color:rgb(6 182 212 / 0.4)}.border-emerald-500\/40{border-color:rgb(16 185 129 / 0.4)}.border-gray-700{--tw-border-opacity:1;border-color:rgb(55 65 81 / var(--tw-border-opacity, 1))}.border-gray-700\/80{border-color:rgb(55 65 81 / 0.8)}.border-gray-800{--tw-border-opacity:1;border-color:rgb(31 41 55 / var(--tw-border-opacity, 1))}.border-gray-800\/80{border-color:rgb(31 41 55 / 0.8)}.border-cyanAccent\/80{border-color:rgb(6 182 212 / 0.8)}.border-t-cyanAccent{--tw-border-opacity:1;border-top-color:rgb(6 182 212 / var(--tw-border-opacity, 1))}.bg-darkbg{--tw-bg-opacity:1;background-color:rgb(10 15 29 / var(--tw-bg-opacity, 1))}.bg-emerald-400{--tw-bg-opacity:1;background-color:rgb(52 211 153 / var(--tw-bg-opacity, 1))}.bg-emerald-500\/20{background-color:rgb(16 185 129 / 0.2)}.bg-emerald-600{--tw-bg-opacity:1;background-color:rgb(5 150 105 / var(--tw-bg-opacity, 1))}.bg-surface{--tw-bg-opacity:1;background-color:rgb(17 24 39 / var(--tw-bg-opacity, 1))}.bg-surface\/90{background-color:rgb(17 24 39 / 0.9)}.bg-surface\/50{background-color:rgb(17 24 39 / 0.5)}.bg-cyan-600\/20{background-color:rgb(8 145 178 / 0.2)}.bg-gradient-to-r{background-image:linear-gradient(to right, var(--tw-gradient-stops))}.bg-gradient-to-tr{background-image:linear-gradient(to top right, var(--tw-gradient-stops))}.from-cyan-600{--tw-gradient-from:#0891b2 var(--tw-gradient-from-position);--tw-gradient-to:rgb(8 145 178 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.to-cyan-400{--tw-gradient-to:#22d3ee var(--tw-gradient-to-position)}.to-cyan-500{--tw-gradient-to:#06b6d4 var(--tw-gradient-to-position)}.p-1{padding:0.25rem}.p-1\.5{padding:0.375rem}.p-2{padding:0.5rem}.p-4{padding:1rem}.p-2\.5{padding:0.625rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-2\.5{padding-left:0.625rem;padding-right:0.625rem}.px-3\.5{padding-left:0.875rem;padding-right:0.875rem}.px-4{padding-left:1rem;padding-right:1rem}.py-0\.5{padding-top:0.125rem;padding-bottom:0.125rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}.py-3\.5{padding-top:0.875rem;padding-bottom:0.875rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.px-1\.5{padding-left:0.375rem;padding-right:0.375rem}.pb-2{padding-bottom:0.5rem}.pl-1{padding-left:0.25rem}.pr-1{padding-right:0.25rem}.text-center{text-align:center}.font-mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.tracking-wider{letter-spacing:0.05em}.text-cyanAccent{--tw-text-opacity:1;color:rgb(6 182 212 / var(--tw-text-opacity, 1))}.text-darkbg{--tw-text-opacity:1;color:rgb(10 15 29 / var(--tw-text-opacity, 1))}.text-emerald-400{--tw-text-opacity:1;color:rgb(52 211 153 / var(--tw-text-opacity, 1))}.text-gray-100{--tw-text-opacity:1;color:rgb(243 244 246 / var(--tw-text-opacity, 1))}.text-gray-200{--tw-text-opacity:1;color:rgb(229 231 235 / var(--tw-text-opacity, 1))}.text-gray-300{--tw-text-opacity:1;color:rgb(209 213 219 / var(--tw-text-opacity, 1))}.text-gray-400{--tw-text-opacity:1;color:rgb(156 163 175 / var(--tw-text-opacity, 1))}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-red-400\/70{color:rgb(248 113 113 / 0.7)}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.opacity-0{opacity:0}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-cyan-500\/20{--tw-shadow-color:rgb(6 182 212 / 0.2);--tw-shadow:var(--tw-shadow-colored)}.shadow-emerald-600\/20{--tw-shadow-color:rgb(5 150 105 / 0.2);--tw-shadow:var(--tw-shadow-colored)}.shadow-cyan-500\/10{--tw-shadow-color:rgb(6 182 212 / 0.1);--tw-shadow:var(--tw-shadow-colored)}.backdrop-blur-md{--tw-backdrop-blur:blur(12px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-opacity{transition-property:opacity;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}.duration-500{transition-duration:500ms}.focus-within\:border-cyanAccent:focus-within{--tw-border-opacity:1;border-color:rgb(6 182 212 / var(--tw-border-opacity, 1))}.hover\:bg-emerald-500:hover{--tw-bg-opacity:1;background-color:rgb(16 185 129 / var(--tw-bg-opacity, 1))}.hover\:bg-surfaceHover:hover{--tw-bg-opacity:1;background-color:rgb(31 41 55 / var(--tw-bg-opacity, 1))}.hover\:bg-cyan-600\/40:hover{background-color:rgb(8 145 178 / 0.4)}.hover\:from-cyan-500:hover{--tw-gradient-from:#06b6d4 var(--tw-gradient-from-position);--tw-gradient-to:rgb(6 182 212 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.hover\:to-cyan-400:hover{--tw-gradient-to:#22d3ee var(--tw-gradient-to-position)}.hover\:text-cyanAccent:hover{--tw-text-opacity:1;color:rgb(6 182 212 / var(--tw-text-opacity, 1))}.hover\:text-red-400:hover{--tw-text-opacity:1;color:rgb(248 113 113 / var(--tw-text-opacity, 1))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:underline:hover{-webkit-text-decoration-line:underline;text-decoration-line:underline}.focus\:border-cyanAccent:focus{--tw-border-opacity:1;border-color:rgb(6 182 212 / var(--tw-border-opacity, 1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}@media (min-width: 640px){.sm\:inline{display:inline}}@media (min-width: 768px){.md\:inline{display:inline}.md\:w-96{width:24rem}.md\:p-3{padding:0.75rem}.md\:p-6{padding:1.5rem}.md\:px-6{padding-left:1.5rem;padding-right:1.5rem}.md\:text-base{font-size:1rem;line-height:1.5rem}.md\:text-sm{font-size:0.875rem;line-height:1.25rem}}@media (min-width: 1024px){.lg\:inline{display:inline}}</style></head>
 <body class="min-h-screen flex flex-col bg-darkbg text-gray-100 antialiased">
 
     <!-- HEADER TOOLBAR -->
     <header class="bg-surface/90 border-b border-gray-800 px-4 md:px-6 py-3.5 flex flex-wrap items-center justify-between gap-4 sticky top-0 z-30 backdrop-blur-md">
-        
-        <!-- Left: Title & Live Badge -->
         <div class="flex items-center space-x-3">
+            <button onclick="toggleSidebar()" class="p-2 bg-surface hover:bg-surfaceHover border border-gray-700 text-cyanAccent rounded-xl transition" title="Toggle Sidebar Link Manager">
+                <i class="fa-solid fa-bars text-base"></i>
+            </button>
             <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-600 to-cyan-400 flex items-center justify-center text-darkbg font-extrabold text-lg shadow-lg shadow-cyan-500/20">
                 <i class="fa-solid fa-chart-line"></i>
             </div>
@@ -100,31 +46,19 @@
                         <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse-dot"></span> LIVE
                     </span>
                 </div>
-                <p id="realtime-clock" class="text-xs text-gray-400 font-mono mt-0.5">Oct 27, 2026 | 13:46:23</p>
+                <p id="realtime-clock" class="text-xs text-gray-400 font-mono mt-0.5">Nov 3, 2026 | 09:00:19</p>
             </div>
         </div>
 
-        <!-- Center/Right: Controls (Prev/Next, Reload, Auto Refresh, Export HTML, TV Mode) -->
         <div class="flex items-center space-x-3">
-            
-            <!-- Prev / Next Navigation Buttons -->
             <div class="flex items-center bg-darkbg border border-gray-700/80 rounded-lg p-1 space-x-1">
-                <button onclick="prevFile()" class="p-2 bg-surface hover:bg-surfaceHover text-gray-300 hover:text-cyanAccent rounded-md text-xs transition flex items-center gap-1" title="Previous File">
-                    <i class="fa-solid fa-chevron-left"></i>
-                    <span class="hidden md:inline">Prev</span>
-                </button>
-                <span id="page-indicator" class="text-xs text-cyanAccent font-mono px-2">1 / 4</span>
-                <button onclick="nextFile()" class="p-2 bg-surface hover:bg-surfaceHover text-gray-300 hover:text-cyanAccent rounded-md text-xs transition flex items-center gap-1" title="Next File">
-                    <span class="hidden md:inline">Next</span>
-                    <i class="fa-solid fa-chevron-right"></i>
-                </button>
+                <button onclick="prevFile()" class="p-2 bg-surface hover:bg-surfaceHover text-gray-300 hover:text-cyanAccent rounded-md text-xs transition flex items-center gap-1" title="Previous File"><i class="fa-solid fa-chevron-left"></i><span class="hidden md:inline">Prev</span></button>
+                <span id="page-indicator" class="text-xs text-cyanAccent font-mono px-2">1 / 3</span>
+                <button onclick="nextFile()" class="p-2 bg-surface hover:bg-surfaceHover text-gray-300 hover:text-cyanAccent rounded-md text-xs transition flex items-center gap-1" title="Next File"><span class="hidden md:inline">Next</span><i class="fa-solid fa-chevron-right"></i></button>
             </div>
 
-            <!-- Auto-Refresh Selector -->
             <div class="flex items-center bg-darkbg border border-gray-700/80 rounded-lg p-1.5 space-x-2">
-                <span class="text-xs text-gray-400 font-medium pl-1 hidden lg:inline">
-                    <i class="fa-solid fa-rotate text-cyanAccent mr-1"></i>Auto Refresh:
-                </span>
+                <span class="text-xs text-gray-400 font-medium pl-1 hidden lg:inline"><i class="fa-solid fa-rotate text-cyanAccent mr-1"></i>Auto Refresh:</span>
                 <select id="auto-refresh-select" onchange="handleRefreshChange(this.value)" class="bg-surface text-cyanAccent text-xs font-semibold rounded px-2 py-1 border border-gray-700 focus:outline-none focus:border-cyanAccent transition cursor-pointer">
                     <option value="off" selected="">Off</option>
                     <option value="1">1m</option>
@@ -133,213 +67,185 @@
                 </select>
             </div>
 
-            <!-- Manual Reload Button -->
-            <button onclick="reloadViewer()" class="p-2 bg-surface hover:bg-surfaceHover text-gray-300 hover:text-cyanAccent border border-gray-700 rounded-lg text-xs transition flex items-center justify-center" title="Reload Presentation">
-                <i id="reload-icon" class="fa-solid fa-arrows-rotate"></i>
-            </button>
-
-            <!-- Export HTML Button -->
-            <button onclick="exportHTMLFile()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs px-3.5 py-2 rounded-lg flex items-center gap-2 transition shadow-lg shadow-emerald-600/20" title="Export updated HTML file">
-                <i class="fa-solid fa-download"></i>
-                <span class="hidden sm:inline">Export HTML</span>
-            </button>
-
-            <!-- Fullscreen (TV Mode) Toggle -->
-            <button onclick="toggleTVMode()" class="bg-gradient-to-r from-cyan-600 to-cyan-500 hover:from-cyan-500 hover:to-cyan-400 text-darkbg font-bold text-xs px-4 py-2 rounded-lg flex items-center gap-2 transition shadow-lg shadow-cyan-500/20">
-                <i class="fa-solid fa-tv"></i>
-                <span>TV Mode</span>
-            </button>
-
+            <button onclick="reloadViewer()" class="p-2 bg-surface hover:bg-surfaceHover text-gray-300 hover:text-cyanAccent border border-gray-700 rounded-lg text-xs transition flex items-center justify-center" title="Reload Presentation"><i id="reload-icon" class="fa-solid fa-arrows-rotate"></i></button>
+            <button onclick="exportHTMLFile()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs px-3.5 py-2 rounded-lg flex items-center gap-2 transition shadow-lg shadow-emerald-600/20" title="Export updated HTML file"><i class="fa-solid fa-download"></i><span class="hidden sm:inline">Export HTML</span></button>
+            <button onclick="toggleTVMode()" class="bg-gradient-to-r from-cyan-600 to-cyan-500 hover:from-cyan-500 hover:to-cyan-400 text-darkbg font-bold text-xs px-4 py-2 rounded-lg flex items-center gap-2 transition shadow-lg shadow-cyan-500/20"><i class="fa-solid fa-tv"></i><span>TV Mode</span></button>
         </div>
     </header>
 
-    <!-- MAIN CONTENT CONTAINER -->
-    <main class="flex-1 max-w-7xl w-full mx-auto p-4 md:p-6 flex flex-col space-y-6">
-
-        <!-- EMBEDDED VIEWER CONTAINER -->
-        <section class="bg-surface rounded-2xl glow-border p-2 md:p-3 relative overflow-hidden">
-            
-            <!-- Loading Indicator Placeholder -->
-            <div id="iframe-loader" class="absolute inset-0 bg-surface/90 backdrop-blur-sm z-10 flex flex-col items-center justify-center transition-opacity duration-500 opacity-0 pointer-events-none" style="display: none;">
-                <div class="w-10 h-10 border-4 border-gray-800 border-t-cyanAccent rounded-full animate-spin mb-3"></div>
-                <p class="text-xs font-semibold text-cyanAccent tracking-wider">Connecting to SharePoint PowerPoint Viewer...</p>
-            </div>
-
-            <!-- Responsive 16:9 Frame -->
-            <div class="aspect-16-9 rounded-xl overflow-hidden bg-darkbg">
-                <iframe id="ppt-iframe" src="https://macoth.sharepoint.com/sites/sedata/_layouts/15/Doc.aspx?sourcedoc={abcc1e8b-6d7a-4a1d-9dee-a469f375283d}&amp;action=embedview&amp;wdAr=1.7793190416141236&amp;wdEaaCheck=1" width="100%" height="100%" frameborder="0" title="PowerPoint Viewer" allowfullscreen="true" onload="onIframeLoaded()">
-                </iframe>
-            </div>
-        </section>
-
-        <!-- EMBED LINKS MANAGER SECTION -->
-        <section class="bg-surface border border-gray-800 rounded-2xl p-4 md:p-5 space-y-4">
-            <div class="flex items-center justify-between">
+    <!-- MAIN WRAPPER WITH SIDEBAR -->
+    <div class="flex-1 flex overflow-hidden">
+        <aside id="sidebar-manager" class="w-80 md:w-96 bg-surface border-r border-gray-800 p-4 flex flex-col space-y-4 shrink-0 transition-all duration-300">
+            <div class="flex items-center justify-between pb-2 border-b border-gray-800">
                 <div class="flex items-center gap-2">
-                    <i class="fa-solid fa-code text-cyanAccent text-sm"></i>
-                    <h2 class="font-extrabold text-xs md:text-sm uppercase tracking-wider text-gray-200">
-                        SE Command Center - Embed File Manager
-                    </h2>
+                    <i class="fa-solid fa-list-check text-cyanAccent text-sm"></i>
+                    <h2 class="font-extrabold text-xs md:text-sm uppercase tracking-wider text-gray-200">Link Manager</h2>
                 </div>
-                <div class="flex items-center gap-3">
+                <div class="flex items-center gap-2">
                     <span id="save-status" class="text-[11px] text-gray-500 font-mono transition-opacity opacity-0">Saved</span>
-                    <button onclick="addFileRow()" class="bg-darkbg hover:bg-surfaceHover text-cyanAccent border border-cyan-500/40 font-semibold text-xs px-3 py-1.5 rounded-lg transition flex items-center gap-1.5">
-                        <i class="fa-solid fa-plus text-emerald-400"></i>
-                        <span>Add Embed Link</span>
-                    </button>
+                    <button onclick="addFileRow()" class="bg-darkbg hover:bg-surfaceHover text-cyanAccent border border-cyan-500/40 font-semibold text-xs px-2.5 py-1 rounded-lg transition flex items-center gap-1"><i class="fa-solid fa-plus text-emerald-400"></i><span>Add</span></button>
                 </div>
             </div>
+            <div id="file-list-container" class="flex-1 space-y-2.5 overflow-y-auto pr-1"><div class="file-row flex flex-col gap-1.5 bg-darkbg border border-gray-800 rounded-xl p-2.5 transition focus-within:border-cyanAccent border-cyanAccent/80 shadow-lg shadow-cyan-500/10">
+                    <div class="flex items-center justify-between gap-1">
+                        <span class="file-number text-cyanAccent font-extrabold text-xs font-mono">#1</span>
+                        <select class="file-type-select bg-surface text-gray-300 text-[11px] font-semibold rounded px-1.5 py-0.5 border border-gray-700 focus:outline-none" onchange="triggerAutoSave()">
+                            <option value="embed" selected="">Embed View</option>
+                            <option value="external">External Link</option>
+                        </select>
+                        <div class="flex items-center gap-1">
+                            <button onclick="selectAndDisplay(0)" class="view-btn px-2 py-0.5 bg-cyan-600/20 hover:bg-cyan-600/40 text-cyanAccent border border-cyan-500/40 rounded text-[11px] font-semibold transition" title="Display">View</button>
+                            <a href="https://macoth.sharepoint.com/sites/sedata/_layouts/15/Doc.aspx?sourcedoc={abcc1e8b-6d7a-4a1d-9dee-a469f375283d}&amp;action=embedview&amp;wdAr=1.7793190416141236&amp;wdEaaCheck=1" target="_blank" class="ext-btn px-1.5 py-0.5 bg-surface hover:bg-surfaceHover text-gray-400 hover:text-white border border-gray-700 rounded text-[11px]" title="Open Tab"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                            <button onclick="removeFileRow(this)" class="p-1 text-red-400/70 hover:text-red-400 transition" title="Delete"><i class="fa-solid fa-trash-can text-xs"></i></button>
+                        </div>
+                    </div>
+                    <input type="text" class="file-name-input bg-surface text-gray-200 text-xs font-medium px-2 py-1 rounded border border-gray-800 focus:outline-none focus:border-cyanAccent" placeholder="Dashboard / File Name" value="Main Dashboard Presentation" oninput="triggerAutoSave()">
+                    <input type="text" class="file-url-input bg-surface text-gray-300 text-[11px] font-mono px-2 py-1 rounded border border-gray-800 focus:outline-none focus:border-cyanAccent" placeholder="Paste URL or Embed Link here..." value="https://macoth.sharepoint.com/sites/sedata/_layouts/15/Doc.aspx?sourcedoc={abcc1e8b-6d7a-4a1d-9dee-a469f375283d}&amp;action=embedview&amp;wdAr=1.7793190416141236&amp;wdEaaCheck=1" oninput="triggerAutoSave()">
+                </div><div class="file-row flex flex-col gap-1.5 bg-darkbg border border-gray-800 rounded-xl p-2.5 transition focus-within:border-cyanAccent">
+                <div class="flex items-center justify-between gap-1">
+                    <span class="file-number text-cyanAccent font-extrabold text-xs font-mono">#2</span>
+                    <select class="file-type-select bg-surface text-gray-300 text-[11px] font-semibold rounded px-1.5 py-0.5 border border-gray-700 focus:outline-none" onchange="triggerAutoSave()">
+                        <option value="embed" selected="">Embed View</option>
+                        <option value="external">External Link</option>
+                    </select>
+                    <div class="flex items-center gap-1">
+                        <button onclick="selectAndDisplay(1)" class="view-btn px-2 py-0.5 bg-cyan-600/20 hover:bg-cyan-600/40 text-cyanAccent border border-cyan-500/40 rounded text-[11px] font-semibold transition" title="Display">View</button>
+                        <a href="https://macoth.sharepoint.com/sites/sedata/_layouts/15/Doc.aspx?sourcedoc={cb65200d-5362-4a01-9ea5-91a40e3e36ae}&amp;action=embedview&amp;wdAr=1.3333333333333333" target="_blank" class="ext-btn px-1.5 py-0.5 bg-surface hover:bg-surfaceHover text-gray-400 hover:text-white border border-gray-700 rounded text-[11px]" title="Open Tab"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        <button onclick="removeFileRow(this)" class="p-1 text-red-400/70 hover:text-red-400 transition" title="Delete"><i class="fa-solid fa-trash-can text-xs"></i></button>
+                    </div>
+                </div>
+                <input type="text" class="file-name-input bg-surface text-gray-200 text-xs font-medium px-2 py-1 rounded border border-gray-800 focus:outline-none focus:border-cyanAccent" placeholder="Dashboard / File Name" oninput="triggerAutoSave()">
+                <input type="text" class="file-url-input bg-surface text-gray-300 text-[11px] font-mono px-2 py-1 rounded border border-gray-800 focus:outline-none focus:border-cyanAccent" placeholder="Paste URL or Embed Link here..." oninput="triggerAutoSave()">
+            </div><div class="file-row flex flex-col gap-1.5 bg-darkbg border border-gray-800 rounded-xl p-2.5 transition focus-within:border-cyanAccent">
+                <div class="flex items-center justify-between gap-1">
+                    <span class="file-number text-cyanAccent font-extrabold text-xs font-mono">#3</span>
+                    <select class="file-type-select bg-surface text-gray-300 text-[11px] font-semibold rounded px-1.5 py-0.5 border border-gray-700 focus:outline-none" onchange="triggerAutoSave()">
+                        <option value="embed" selected="">Embed View</option>
+                        <option value="external">External Link</option>
+                    </select>
+                    <div class="flex items-center gap-1">
+                        <button onclick="selectAndDisplay(2)" class="view-btn px-2 py-0.5 bg-cyan-600/20 hover:bg-cyan-600/40 text-cyanAccent border border-cyan-500/40 rounded text-[11px] font-semibold transition" title="Display">View</button>
+                        <a href="https://macoth.sharepoint.com/sites/sedata/_layouts/15/Doc.aspx?sourcedoc={8a98134d-06db-4249-877b-382eb3ab98ed}&amp;action=embedview&amp;wdAr=1.4444444444444444" target="_blank" class="ext-btn px-1.5 py-0.5 bg-surface hover:bg-surfaceHover text-gray-400 hover:text-white border border-gray-700 rounded text-[11px]" title="Open Tab"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        <button onclick="removeFileRow(this)" class="p-1 text-red-400/70 hover:text-red-400 transition" title="Delete"><i class="fa-solid fa-trash-can text-xs"></i></button>
+                    </div>
+                </div>
+                <input type="text" class="file-name-input bg-surface text-gray-200 text-xs font-medium px-2 py-1 rounded border border-gray-800 focus:outline-none focus:border-cyanAccent" placeholder="Dashboard / File Name" oninput="triggerAutoSave()">
+                <input type="text" class="file-url-input bg-surface text-gray-300 text-[11px] font-mono px-2 py-1 rounded border border-gray-800 focus:outline-none focus:border-cyanAccent" placeholder="Paste URL or Embed Link here..." oninput="triggerAutoSave()">
+            </div></div>
+        </aside>
 
-            <!-- Dynamic File List Container -->
-            <div id="file-list-container" class="space-y-2.5 max-h-60 overflow-y-auto pr-1"><div class="flex items-center gap-2 bg-darkbg border border-gray-800 rounded-xl p-2 transition focus-within:border-cyanAccent border-cyanAccent/80 shadow-lg shadow-cyan-500/10">
-                    <span class="file-number text-gray-500 text-xs font-mono pl-1 shrink-0">#1</span>
-                    <input type="text" class="file-name-input bg-transparent text-gray-300 text-xs font-medium focus:outline-none w-1/3 md:w-1/4 border-r border-gray-800 pr-2" placeholder="Dashboard / File Name" value="Main Dashboard Presentation" oninput="triggerAutoSave()">
-                    <input type="text" class="file-url-input bg-transparent text-gray-200 text-xs font-mono focus:outline-none flex-1 px-1" placeholder="Paste SharePoint Embed URL here..." value="https://macoth.sharepoint.com/sites/sedata/_layouts/15/Doc.aspx?sourcedoc={abcc1e8b-6d7a-4a1d-9dee-a469f375283d}&amp;action=embedview&amp;wdAr=1.7793190416141236&amp;wdEaaCheck=1" oninput="triggerAutoSave()">
-                    
-                    <button onclick="selectAndDisplay(0)" class="view-btn px-3 py-1 bg-cyan-600/20 hover:bg-cyan-600/40 text-cyanAccent border border-cyan-500/40 rounded-lg text-xs font-semibold transition shrink-0 flex items-center gap-1.5" title="Display on Screen">
-                        <i class="fa-solid fa-desktop"></i>
-                        <span>View</span>
-                    </button>
+        <main class="flex-1 p-4 md:p-6 overflow-y-auto flex flex-col space-y-4">
+            <div class="flex items-center justify-between bg-surface border border-gray-800 rounded-xl px-4 py-2.5">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-desktop text-cyanAccent text-sm"></i>
+                    <span id="active-dashboard-title" class="font-bold text-xs md:text-sm text-gray-200">Main Dashboard Presentation</span>
+                </div>
+                <a id="external-open-btn" href="https://macoth.sharepoint.com/sites/sedata/_layouts/15/Doc.aspx?sourcedoc={abcc1e8b-6d7a-4a1d-9dee-a469f375283d}&amp;action=embedview&amp;wdAr=1.7793190416141236&amp;wdEaaCheck=1" target="_blank" class="text-xs text-cyanAccent hover:underline flex items-center gap-1 font-mono">
+                    <span>Open Link in New Tab</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                </a>
+            </div>
 
-                    <button onclick="removeFileRow(this)" class="p-1.5 text-red-400/70 hover:text-red-400 transition shrink-0" title="Delete Row">
-                        <i class="fa-solid fa-trash-can text-xs"></i>
-                    </button>
-                </div><div class="flex items-center gap-2 bg-darkbg border border-gray-800 rounded-xl p-2 transition focus-within:border-cyanAccent">
-                    <span class="file-number text-gray-500 text-xs font-mono pl-1 shrink-0">#2</span>
-                    <input type="text" class="file-name-input bg-transparent text-gray-300 text-xs font-medium focus:outline-none w-1/3 md:w-1/4 border-r border-gray-800 pr-2" placeholder="Dashboard / File Name" value="2" oninput="triggerAutoSave()">
-                    <input type="text" class="file-url-input bg-transparent text-gray-200 text-xs font-mono focus:outline-none flex-1 px-1" placeholder="Paste SharePoint Embed URL here..." value="https://macoth.sharepoint.com/sites/sedata/_layouts/15/Doc.aspx?sourcedoc={abcc1e8b-6d7a-4a1d-9dee-a469f375283d}&amp;action=embedview&amp;wdAr=1.7793190416141236&amp;wdEaaCheck=1" oninput="triggerAutoSave()">
-                    
-                    <button onclick="selectAndDisplay(1)" class="view-btn px-3 py-1 bg-cyan-600/20 hover:bg-cyan-600/40 text-cyanAccent border border-cyan-500/40 rounded-lg text-xs font-semibold transition shrink-0 flex items-center gap-1.5" title="Display on Screen">
-                        <i class="fa-solid fa-desktop"></i>
-                        <span>View</span>
-                    </button>
-
-                    <button onclick="removeFileRow(this)" class="p-1.5 text-red-400/70 hover:text-red-400 transition shrink-0" title="Delete Row">
-                        <i class="fa-solid fa-trash-can text-xs"></i>
-                    </button>
-                </div></div>
-        </section>
-
-    </main>
+            <section class="bg-surface rounded-2xl glow-border p-2 md:p-3 relative flex-1 flex flex-col">
+                <div id="iframe-loader" class="absolute inset-0 bg-surface/90 backdrop-blur-sm z-10 flex flex-col items-center justify-center transition-opacity duration-500 opacity-0 pointer-events-none" style="display: none;">
+                    <div class="w-10 h-10 border-4 border-gray-800 border-t-cyanAccent rounded-full animate-spin mb-3"></div>
+                    <p class="text-xs font-semibold text-cyanAccent tracking-wider">Loading Requested Dashboard / Link...</p>
+                </div>
+                <div class="aspect-16-9 rounded-xl overflow-hidden bg-darkbg flex-1">
+                    <iframe id="ppt-iframe" src="https://macoth.sharepoint.com/sites/sedata/_layouts/15/Doc.aspx?sourcedoc={abcc1e8b-6d7a-4a1d-9dee-a469f375283d}&amp;action=embedview&amp;wdAr=1.7793190416141236&amp;wdEaaCheck=1" width="100%" height="100%" frameborder="0" title="Dashboard Viewer" allowfullscreen="true" onload="onIframeLoaded()"></iframe>
+                </div>
+            </section>
+        </main>
+    </div>
 
     <!-- FOOTER -->
-    <footer class="bg-surface/50 border-t border-gray-800/80 px-6 py-2.5 text-center text-[11px] text-gray-500">
+    <footer class="bg-surface/50 border-t border-gray-800/80 px-6 py-2 text-center text-[11px] text-gray-500">
         SE Operations Command Center • Internal Viewer Platform
     </footer>
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
-        let autoRefreshTimer = null;
-        let saveDebounceTimer = null;
-        let currentActiveIndex = 0;
+        let autoRefreshTimer = null, saveDebounceTimer = null, currentActiveIndex = 0;
+        const FILES_KEY = 'se_command_center_embed_list_v2', ACTIVE_INDEX_KEY = 'se_command_center_active_index_v2';
 
-        // Real-Time Clock
         function updateClock() {
             const now = new Date();
-            const timeStr = now.toLocaleTimeString('en-US', { hour12: false });
-            const dateStr = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-            document.getElementById('realtime-clock').innerText = `${dateStr} | ${timeStr}`;
+            document.getElementById('realtime-clock').innerText = `${now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} | ${now.toLocaleTimeString('en-US', { hour12: false })}`;
         }
         setInterval(updateClock, 1000);
         updateClock();
 
+        function toggleSidebar() { document.getElementById('sidebar-manager').classList.toggle('hidden'); }
+
         function onIframeLoaded() {
             const loader = document.getElementById('iframe-loader');
             loader.classList.add('opacity-0', 'pointer-events-none');
-            setTimeout(() => {
-                loader.style.display = 'none';
-            }, 500);
+            setTimeout(() => loader.style.display = 'none', 500);
         }
 
         function reloadViewer() {
-            const loader = document.getElementById('iframe-loader');
-            const iframe = document.getElementById('ppt-iframe');
-            const icon = document.getElementById('reload-icon');
-
+            const loader = document.getElementById('iframe-loader'), iframe = document.getElementById('ppt-iframe'), icon = document.getElementById('reload-icon');
             loader.style.display = 'flex';
             loader.classList.remove('opacity-0', 'pointer-events-none');
-            
             icon.classList.add('animate-spin');
             setTimeout(() => icon.classList.remove('animate-spin'), 1000);
-
-            const currentSrc = iframe.src;
-            iframe.src = currentSrc;
+            iframe.src = iframe.src;
         }
 
-        const FILES_KEY = 'se_command_center_embed_list';
-        const ACTIVE_INDEX_KEY = 'se_command_center_active_index';
-
         function loadFiles() {
-            const savedData = localStorage.getItem(FILES_KEY);
-            const savedIndex = localStorage.getItem(ACTIVE_INDEX_KEY);
+            const savedData = localStorage.getItem(FILES_KEY), savedIndex = localStorage.getItem(ACTIVE_INDEX_KEY);
             let fileList = [];
-
-            if (savedData !== null) {
-                try {
-                    fileList = JSON.parse(savedData);
-                } catch(e) {
-                    fileList = [];
-                }
-            }
+            if (savedData !== null) { try { fileList = JSON.parse(savedData); } catch(e) { fileList = []; } }
 
             if (fileList.length === 0) {
                 fileList = [
     {
         "name": "Main Dashboard Presentation",
-        "url": "https://macoth.sharepoint.com/sites/sedata/_layouts/15/Doc.aspx?sourcedoc={abcc1e8b-6d7a-4a1d-9dee-a469f375283d}&action=embedview&wdAr=1.7793190416141236&wdEaaCheck=1"
+        "url": "https://macoth.sharepoint.com/sites/sedata/_layouts/15/Doc.aspx?sourcedoc={abcc1e8b-6d7a-4a1d-9dee-a469f375283d}&action=embedview&wdAr=1.7793190416141236&wdEaaCheck=1",
+        "type": "embed"
     },
     {
-        "name": "2",
-        "url": "https://macoth.sharepoint.com/sites/sedata/_layouts/15/Doc.aspx?sourcedoc={abcc1e8b-6d7a-4a1d-9dee-a469f375283d}&action=embedview&wdAr=1.7793190416141236&wdEaaCheck=1"
+        "name": "RAC&PAC Quality improvement",
+        "url": "https://macoth.sharepoint.com/sites/sedata/_layouts/15/Doc.aspx?sourcedoc={cb65200d-5362-4a01-9ea5-91a40e3e36ae}&action=embedview&wdAr=1.3333333333333333",
+        "type": "embed"
+    },
+    {
+        "name": "KX Quality improvement",
+        "url": "https://macoth.sharepoint.com/sites/sedata/_layouts/15/Doc.aspx?sourcedoc={8a98134d-06db-4249-877b-382eb3ab98ed}&action=embedview&wdAr=1.4444444444444444",
+        "type": "embed"
     }
 ];
             }
 
             renderFileList(fileList);
-
-            if (savedIndex !== null) {
-                currentActiveIndex = parseInt(savedIndex, 10) || 0;
-            }
-
-            const totalRows = document.querySelectorAll('#file-list-container .flex').length;
-            if (currentActiveIndex >= totalRows) {
-                currentActiveIndex = totalRows - 1;
-            }
-            if (currentActiveIndex < 0) {
-                currentActiveIndex = 0;
-            }
-
+            if (savedIndex !== null) currentActiveIndex = parseInt(savedIndex, 10) || 0;
+            const totalRows = document.querySelectorAll('#file-list-container .file-row').length;
+            if (currentActiveIndex >= totalRows) currentActiveIndex = totalRows - 1;
+            if (currentActiveIndex < 0) currentActiveIndex = 0;
             selectAndDisplay(currentActiveIndex);
         }
 
         function renderFileList(fileList) {
             const container = document.getElementById('file-list-container');
             container.innerHTML = '';
-
             fileList.forEach((file, index) => {
                 const row = document.createElement('div');
-                row.className = `flex items-center gap-2 bg-darkbg border border-gray-800 rounded-xl p-2 transition focus-within:border-cyanAccent`;
+                row.className = `file-row flex flex-col gap-1.5 bg-darkbg border border-gray-800 rounded-xl p-2.5 transition focus-within:border-cyanAccent`;
                 row.innerHTML = `
-                    <span class="file-number text-gray-500 text-xs font-mono pl-1 shrink-0">#${index + 1}</span>
-                    <input type="text" 
-                           class="file-name-input bg-transparent text-gray-300 text-xs font-medium focus:outline-none w-1/3 md:w-1/4 border-r border-gray-800 pr-2" 
-                           placeholder="Dashboard / File Name" 
-                           value="${escapeHtml(file.name)}" 
-                           oninput="triggerAutoSave()">
-                    <input type="text" 
-                           class="file-url-input bg-transparent text-gray-200 text-xs font-mono focus:outline-none flex-1 px-1" 
-                           placeholder="Paste SharePoint Embed URL here..." 
-                           value="${escapeHtml(file.url)}" 
-                           oninput="triggerAutoSave()">
-                    
-                    <button onclick="selectAndDisplay(${index})" class="view-btn px-3 py-1 bg-cyan-600/20 hover:bg-cyan-600/40 text-cyanAccent border border-cyan-500/40 rounded-lg text-xs font-semibold transition shrink-0 flex items-center gap-1.5" title="Display on Screen">
-                        <i class="fa-solid fa-desktop"></i>
-                        <span>View</span>
-                    </button>
-
-                    <button onclick="removeFileRow(this)" class="p-1.5 text-red-400/70 hover:text-red-400 transition shrink-0" title="Delete Row">
-                        <i class="fa-solid fa-trash-can text-xs"></i>
-                    </button>
+                    <div class="flex items-center justify-between gap-1">
+                        <span class="file-number text-cyanAccent font-extrabold text-xs font-mono">#${index + 1}</span>
+                        <select class="file-type-select bg-surface text-gray-300 text-[11px] font-semibold rounded px-1.5 py-0.5 border border-gray-700 focus:outline-none" onchange="triggerAutoSave()">
+                            <option value="embed" ${file.type === 'embed' ? 'selected' : ''}>Embed View</option>
+                            <option value="external" ${file.type === 'external' ? 'selected' : ''}>External Link</option>
+                        </select>
+                        <div class="flex items-center gap-1">
+                            <button onclick="selectAndDisplay(${index})" class="view-btn px-2 py-0.5 bg-cyan-600/20 hover:bg-cyan-600/40 text-cyanAccent border border-cyan-500/40 rounded text-[11px] font-semibold transition" title="Display">View</button>
+                            <a href="${escapeHtml(file.url)}" target="_blank" class="ext-btn px-1.5 py-0.5 bg-surface hover:bg-surfaceHover text-gray-400 hover:text-white border border-gray-700 rounded text-[11px]" title="Open Tab"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                            <button onclick="removeFileRow(this)" class="p-1 text-red-400/70 hover:text-red-400 transition" title="Delete"><i class="fa-solid fa-trash-can text-xs"></i></button>
+                        </div>
+                    </div>
+                    <input type="text" class="file-name-input bg-surface text-gray-200 text-xs font-medium px-2 py-1 rounded border border-gray-800 focus:outline-none focus:border-cyanAccent" placeholder="Dashboard / File Name" value="${escapeHtml(file.name)}" oninput="triggerAutoSave()">
+                    <input type="text" class="file-url-input bg-surface text-gray-300 text-[11px] font-mono px-2 py-1 rounded border border-gray-800 focus:outline-none focus:border-cyanAccent" placeholder="Paste URL or Embed Link here..." value="${escapeHtml(file.url)}" oninput="triggerAutoSave()">
                 `;
                 container.appendChild(row);
             });
@@ -347,9 +253,7 @@
         }
 
         function refreshRowNumbers() {
-            const container = document.getElementById('file-list-container');
-            const rows = container.querySelectorAll('.flex');
-            rows.forEach((row, idx) => {
+            document.querySelectorAll('#file-list-container .file-row').forEach((row, idx) => {
                 row.querySelector('.file-number').innerText = `#${idx + 1}`;
                 row.querySelector('.view-btn').setAttribute('onclick', `selectAndDisplay(${idx})`);
             });
@@ -357,28 +261,17 @@
         }
 
         function updatePageIndicator() {
-            const rows = document.querySelectorAll('#file-list-container .flex');
-            const totalCount = rows.length;
-            const indicator = document.getElementById('page-indicator');
-            
-            if (totalCount === 0) {
-                indicator.innerText = `0 / 0`;
-                currentActiveIndex = 0;
-            } else {
-                if (currentActiveIndex >= totalCount) {
-                    currentActiveIndex = totalCount - 1;
-                }
-                indicator.innerText = `${currentActiveIndex + 1} / ${totalCount}`;
+            const rows = document.querySelectorAll('#file-list-container .file-row'), indicator = document.getElementById('page-indicator');
+            if (rows.length === 0) { indicator.innerText = `0 / 0`; currentActiveIndex = 0; } 
+            else {
+                if (currentActiveIndex >= rows.length) currentActiveIndex = rows.length - 1;
+                indicator.innerText = `${currentActiveIndex + 1} / ${rows.length}`;
             }
         }
 
         function selectAndDisplay(index) {
-            const rows = document.querySelectorAll('#file-list-container .flex');
-            
-            if (rows.length === 0) {
-                updatePageIndicator();
-                return;
-            }
+            const rows = document.querySelectorAll('#file-list-container .file-row');
+            if (rows.length === 0) { updatePageIndicator(); return; }
             if (index < 0) index = rows.length - 1;
             if (index >= rows.length) index = 0;
 
@@ -386,11 +279,8 @@
             localStorage.setItem(ACTIVE_INDEX_KEY, currentActiveIndex);
             
             rows.forEach((r, idx) => {
-                if (idx === index) {
-                    r.classList.add('border-cyanAccent/80', 'shadow-lg', 'shadow-cyan-500/10');
-                } else {
-                    r.classList.remove('border-cyanAccent/80', 'shadow-lg', 'shadow-cyan-500/10');
-                }
+                if (idx === index) r.classList.add('border-cyanAccent/80', 'shadow-lg', 'shadow-cyan-500/10');
+                else r.classList.remove('border-cyanAccent/80', 'shadow-lg', 'shadow-cyan-500/10');
             });
 
             displayEmbed(index);
@@ -398,64 +288,51 @@
         }
 
         function displayEmbed(index) {
-            const rows = document.querySelectorAll('#file-list-container .flex');
+            const rows = document.querySelectorAll('#file-list-container .file-row');
             if (!rows[index]) return;
 
+            const name = rows[index].querySelector('.file-name-input').value.trim();
             const url = rows[index].querySelector('.file-url-input').value.trim();
-            const iframe = document.getElementById('ppt-iframe');
             const loader = document.getElementById('iframe-loader');
 
+            document.getElementById('active-dashboard-title').innerText = name || 'Untitled Dashboard';
+            document.getElementById('external-open-btn').href = url || '#';
             loader.style.display = 'flex';
             loader.classList.remove('opacity-0', 'pointer-events-none');
 
-            if (url) {
-                iframe.src = url;
-            } else {
-                iframe.src = 'about:blank';
-                setTimeout(onIframeLoaded, 300);
-            }
+            document.getElementById('ppt-iframe').src = url ? url : 'about:blank';
+            if (!url) setTimeout(onIframeLoaded, 300);
         }
 
         function nextFile() {
-            const rows = document.querySelectorAll('#file-list-container .flex');
-            if (rows.length === 0) return;
-
-            const nextIndex = (currentActiveIndex + 1) % rows.length;
-            selectAndDisplay(nextIndex);
+            const rows = document.querySelectorAll('#file-list-container .file-row');
+            if (rows.length > 0) selectAndDisplay((currentActiveIndex + 1) % rows.length);
         }
 
         function prevFile() {
-            const rows = document.querySelectorAll('#file-list-container .flex');
-            if (rows.length === 0) return;
-
-            const prevIndex = (currentActiveIndex - 1 + rows.length) % rows.length;
-            selectAndDisplay(prevIndex);
+            const rows = document.querySelectorAll('#file-list-container .file-row');
+            if (rows.length > 0) selectAndDisplay((currentActiveIndex - 1 + rows.length) % rows.length);
         }
 
         function addFileRow() {
-            const container = document.getElementById('file-list-container');
-            const rows = container.querySelectorAll('.flex');
-            const newIndex = rows.length;
-            
+            const container = document.getElementById('file-list-container'), newIndex = container.querySelectorAll('.file-row').length;
             const row = document.createElement('div');
-            row.className = 'flex items-center gap-2 bg-darkbg border border-gray-800 rounded-xl p-2 transition focus-within:border-cyanAccent';
+            row.className = 'file-row flex flex-col gap-1.5 bg-darkbg border border-gray-800 rounded-xl p-2.5 transition focus-within:border-cyanAccent';
             row.innerHTML = `
-                <span class="file-number text-gray-500 text-xs font-mono pl-1 shrink-0">#${newIndex + 1}</span>
-                <input type="text" 
-                       class="file-name-input bg-transparent text-gray-300 text-xs font-medium focus:outline-none w-1/3 md:w-1/4 border-r border-gray-800 pr-2" 
-                       placeholder="Dashboard / File Name" 
-                       oninput="triggerAutoSave()">
-                <input type="text" 
-                       class="file-url-input bg-transparent text-gray-200 text-xs font-mono focus:outline-none flex-1 px-1" 
-                       placeholder="Paste SharePoint Embed URL here..." 
-                       oninput="triggerAutoSave()">
-                <button onclick="selectAndDisplay(${newIndex})" class="view-btn px-3 py-1 bg-cyan-600/20 hover:bg-cyan-600/40 text-cyanAccent border border-cyan-500/40 rounded-lg text-xs font-semibold transition shrink-0 flex items-center gap-1.5" title="Display on Screen">
-                    <i class="fa-solid fa-desktop"></i>
-                    <span>View</span>
-                </button>
-                <button onclick="removeFileRow(this)" class="p-1.5 text-red-400/70 hover:text-red-400 transition shrink-0" title="Delete Row">
-                    <i class="fa-solid fa-trash-can text-xs"></i>
-                </button>
+                <div class="flex items-center justify-between gap-1">
+                    <span class="file-number text-cyanAccent font-extrabold text-xs font-mono">#${newIndex + 1}</span>
+                    <select class="file-type-select bg-surface text-gray-300 text-[11px] font-semibold rounded px-1.5 py-0.5 border border-gray-700 focus:outline-none" onchange="triggerAutoSave()">
+                        <option value="embed" selected>Embed View</option>
+                        <option value="external">External Link</option>
+                    </select>
+                    <div class="flex items-center gap-1">
+                        <button onclick="selectAndDisplay(${newIndex})" class="view-btn px-2 py-0.5 bg-cyan-600/20 hover:bg-cyan-600/40 text-cyanAccent border border-cyan-500/40 rounded text-[11px] font-semibold transition" title="Display">View</button>
+                        <a href="#" target="_blank" class="ext-btn px-1.5 py-0.5 bg-surface hover:bg-surfaceHover text-gray-400 hover:text-white border border-gray-700 rounded text-[11px]" title="Open Tab"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        <button onclick="removeFileRow(this)" class="p-1 text-red-400/70 hover:text-red-400 transition" title="Delete"><i class="fa-solid fa-trash-can text-xs"></i></button>
+                    </div>
+                </div>
+                <input type="text" class="file-name-input bg-surface text-gray-200 text-xs font-medium px-2 py-1 rounded border border-gray-800 focus:outline-none focus:border-cyanAccent" placeholder="Dashboard / File Name" oninput="triggerAutoSave()">
+                <input type="text" class="file-url-input bg-surface text-gray-300 text-[11px] font-mono px-2 py-1 rounded border border-gray-800 focus:outline-none focus:border-cyanAccent" placeholder="Paste URL or Embed Link here..." oninput="triggerAutoSave()">
             `;
             container.appendChild(row);
             refreshRowNumbers();
@@ -463,23 +340,16 @@
         }
 
         function removeFileRow(btn) {
-            const row = btn.closest('.flex');
-            const container = document.getElementById('file-list-container');
-            const rowsArray = Array.from(container.querySelectorAll('.flex'));
-            const removedIndex = rowsArray.indexOf(row);
-            
+            const row = btn.closest('.file-row'), container = document.getElementById('file-list-container');
+            const removedIndex = Array.from(container.querySelectorAll('.file-row')).indexOf(row);
             row.remove();
             refreshRowNumbers();
 
-            const remainingRows = container.querySelectorAll('.flex');
+            const remainingRows = container.querySelectorAll('.file-row');
             if (remainingRows.length > 0) {
-                if (currentActiveIndex >= remainingRows.length) {
-                    selectAndDisplay(remainingRows.length - 1);
-                } else if (removedIndex === currentActiveIndex) {
-                    selectAndDisplay(Math.min(removedIndex, remainingRows.length - 1));
-                } else {
-                    selectAndDisplay(currentActiveIndex);
-                }
+                if (currentActiveIndex >= remainingRows.length) selectAndDisplay(remainingRows.length - 1);
+                else if (removedIndex === currentActiveIndex) selectAndDisplay(Math.min(removedIndex, remainingRows.length - 1));
+                else selectAndDisplay(currentActiveIndex);
             } else {
                 currentActiveIndex = 0;
                 document.getElementById('ppt-iframe').src = 'about:blank';
@@ -492,60 +362,42 @@
         function triggerAutoSave() {
             showSaveStatus('Typing...');
             clearTimeout(saveDebounceTimer);
-            saveDebounceTimer = setTimeout(() => {
-                saveFilesToStorage();
-            }, 800);
+            saveDebounceTimer = setTimeout(saveFilesToStorage, 800);
         }
 
         function saveFilesToStorage() {
-            const container = document.getElementById('file-list-container');
-            const rows = container.querySelectorAll('.flex');
             let fileList = [];
-
-            rows.forEach(row => {
-                const inputs = row.querySelectorAll('input');
-                if (inputs.length >= 2) {
-                    fileList.push({
-                        name: inputs[0].value,
-                        url: inputs[1].value
-                    });
-                }
+            document.getElementById('file-list-container').querySelectorAll('.file-row').forEach(row => {
+                const name = row.querySelector('.file-name-input').value, url = row.querySelector('.file-url-input').value, type = row.querySelector('.file-type-select').value;
+                const extBtn = row.querySelector('.ext-btn');
+                if (extBtn) extBtn.href = url || '#';
+                fileList.push({ name, url, type });
             });
-
             localStorage.setItem(FILES_KEY, JSON.stringify(fileList));
             localStorage.setItem(ACTIVE_INDEX_KEY, currentActiveIndex);
             showSaveStatus('Saved');
         }
 
-        // ฟังก์ชัน Export HTML: ดึงข้อมูลปัจจุบันฝังลงไฟล์ HTML ใหม่และสั่งดาวน์โหลดลงเครื่องทันที
         function exportHTMLFile() {
-            const rows = document.querySelectorAll('#file-list-container .flex');
             let currentList = [];
-            rows.forEach(row => {
-                const inputs = row.querySelectorAll('input');
-                if (inputs.length >= 2) {
-                    currentList.push({
-                        name: inputs[0].value,
-                        url: inputs[1].value
-                    });
-                }
+            document.querySelectorAll('#file-list-container .file-row').forEach(row => {
+                currentList.push({
+                    name: row.querySelector('.file-name-input').value,
+                    url: row.querySelector('.file-url-input').value,
+                    type: row.querySelector('.file-type-select').value
+                });
             });
 
             let fullHtml = document.documentElement.outerHTML;
-            const updatedDefaultArray = JSON.stringify(currentList, null, 4);
+            fullHtml = fullHtml.replace(/fileList = \[\s*\{[\s\S]*?\}\s*\];/g, `fileList = ${JSON.stringify(currentList, null, 4)};`);
 
-            // แทนที่ค่าเริ่มต้นในฟังก์ชัน loadFiles() สำหรับไฟล์ที่ดาวน์โหลดไปใหม่
-            fullHtml = fullHtml.replace(/fileList = \[\s*\{[\s\S]*?\}\s*\];/g, `fileList = ${updatedDefaultArray};`);
-
-            const blob = new Blob([fullHtml], { type: 'text/html' });
-            const a = document.createElement('a');
+            const blob = new Blob([fullHtml], { type: 'text/html' }), a = document.createElement('a');
             a.href = URL.createObjectURL(blob);
             a.download = 'SE_Command_Center_Dashboard.html';
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(a.href);
-
             showSaveStatus('Exported HTML!');
         }
 
@@ -553,49 +405,24 @@
             const statusEl = document.getElementById('save-status');
             statusEl.innerText = msg;
             statusEl.classList.remove('opacity-0');
-            setTimeout(() => {
-                statusEl.classList.add('opacity-0');
-            }, 2500);
+            setTimeout(() => statusEl.classList.add('opacity-0'), 2500);
         }
 
         function handleRefreshChange(value) {
-            if (autoRefreshTimer) {
-                clearInterval(autoRefreshTimer);
-                autoRefreshTimer = null;
-            }
-
-            if (value !== 'off') {
-                const minutes = parseInt(value, 10);
-                autoRefreshTimer = setInterval(() => {
-                    reloadViewer();
-                }, minutes * 60 * 1000);
-            }
+            if (autoRefreshTimer) { clearInterval(autoRefreshTimer); autoRefreshTimer = null; }
+            if (value !== 'off') autoRefreshTimer = setInterval(reloadViewer, parseInt(value, 10) * 60 * 1000);
         }
 
         function toggleTVMode() {
-            if (!document.fullscreenElement) {
-                document.documentElement.requestFullscreen().catch(err => {
-                    alert(`Error attempting to enable fullscreen mode: ${err.message}`);
-                });
-            } else {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                }
-            }
+            if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(err => alert(`Error: ${err.message}`));
+            else if (document.exitFullscreen) document.exitFullscreen();
         }
 
         function escapeHtml(str) {
-            if (!str) return '';
-            return str.replace(/&/g, "&amp;")
-                      .replace(/</g, "&lt;")
-                      .replace(/>/g, "&gt;")
-                      .replace(/"/g, "&quot;")
-                      .replace(/'/g, "&#039;");
+            return str ? str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;") : '';
         }
 
-        window.addEventListener('DOMContentLoaded', () => {
-            loadFiles();
-        });
+        window.addEventListener('DOMContentLoaded', loadFiles);
     </script>
 
 </body></html>
